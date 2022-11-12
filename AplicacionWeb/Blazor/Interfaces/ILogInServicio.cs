@@ -1,8 +1,8 @@
 ﻿using Modelos;
 
-namespace Datos.Interfaces
+namespace Blazor.Interfaces
 {
-    public interface ILogInRepositorio
+    public interface ILogInServicio
     {
         Task<bool> ValidarUsuario(LogIn login);
     }
