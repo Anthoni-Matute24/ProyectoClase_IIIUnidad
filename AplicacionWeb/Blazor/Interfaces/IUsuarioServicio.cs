@@ -1,9 +1,8 @@
 ﻿using Modelos;
 
-namespace Datos.Interfaces
+namespace Blazor.Interfaces
 {
-    // Contiene métodos para guardar, consultar, actualizar y eliminar usuarios
-    public interface IUsuarioRepositorio
+    public interface IUsuarioServicio
     {
         // Métodos
         Task<Usuario> GetPorCodigo(string codigo); // Devuelve un usuario

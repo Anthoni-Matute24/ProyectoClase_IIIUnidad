@@ -4,6 +4,7 @@ using Modelos;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,19 +29,59 @@ namespace Datos.Repositorios
             // Contiene la IP del servidor, el puerto, la BD, la contraseña, el usuario, etc.
         }
 
-        public Task<bool> ActualizarUsuario(Usuario usuario)
+        public async Task<bool> ActualizarUsuario(Usuario usuario)
         {
-            throw new NotImplementedException();
+            bool resultado = false;
+            try
+            {
+                // Abrir una nueva conexión 
+                using MySqlConnection conexion = EstablecerConexion();
+                await conexion.OpenAsync();
+                string sql = @"UPDATE usuario SET Nombre = @Nombre, CLave = @CLave, Correo = @Correo, ROL = @ROL, 
+                               EstaActivo = @EstaActivo WHERE Codigo = @Codigo;";
+                // Guardar los datos en caso de que se haya hecho un nuevo registro.
+                resultado = Convert.ToBoolean(await conexion.ExecuteAsync(sql, usuario));
+            }
+            catch (Exception ex)
+            {
+            }
+            return resultado;
         }
 
-        public Task<bool> EliminarUsuario(Usuario usuario)
+        public async Task<bool> EliminarUsuario(string codigo)
         {
-            throw new NotImplementedException();
+            bool resultado = false;
+            try
+            {
+                // Abrir una nueva conexión 
+                using MySqlConnection conexion = EstablecerConexion();
+                await conexion.OpenAsync();
+                string sql = @"DELETE FROM usuario WHERE Codigo = @Codigo;";
+                // Guardar los datos en caso de que se haya hecho un nuevo registro.
+                resultado = Convert.ToBoolean(await conexion.ExecuteAsync(sql, new { codigo }));
+            }
+            catch (Exception ex)
+            {
+            }
+            return resultado;
         }
 
-        public Task<IEnumerable<Usuario>> GetLista(Usuario usuario)
+        public async Task<IEnumerable<Usuario>> GetLista()
         {
-            throw new NotImplementedException();
+           IEnumerable < Usuario > lista = new List<Usuario >();
+            try
+            {
+                // Abrir una nueva conexión 
+                using MySqlConnection conexion = EstablecerConexion();
+                await conexion.OpenAsync();
+                string sql = "SELECT * FROM usuario;";
+                // Trae un solo registro
+                lista = await conexion.QueryAsync<Usuario>(sql);
+            }
+            catch (Exception ex)
+            {
+            }
+            return lista;
         }
 
         public async Task<Usuario> GetPorCodigo(string codigo)
@@ -61,9 +102,22 @@ namespace Datos.Repositorios
             return user;
         }
 
-        public Task<bool> NuevoUsuario(Usuario usuario)
+        public async Task<bool> NuevoUsuario(Usuario usuario)
         {
-            throw new NotImplementedException();
+            bool resultado = false;
+            try
+            {
+                // Abrir una nueva conexión 
+                using MySqlConnection conexion = EstablecerConexion();
+                await conexion.OpenAsync();
+                string sql = "INSERT INTO usuario (Codigo, Nombre, CLave, Correo, ROL, EstaActivo) VALUES (@Codigo, @Nombre, @CLave, @Correo, @ROL, @EstaActivo);";
+                // Guardar los datos en caso de que se haya hecho un nuevo registro.
+                resultado = Convert.ToBoolean(await conexion.ExecuteAsync(sql, usuario));
+            }
+            catch (Exception ex)
+            {
+            }
+            return resultado;
         }
     }
 }

@@ -14,6 +14,7 @@ Config cadenaConexion = new Config(builder.Configuration.GetConnectionString("My
 builder.Services.AddSingleton(cadenaConexion); // Permite reutilizar el servicio en la aplicación
 
 builder.Services.AddScoped<ILogInServicio, LogInServicio>(); // Configuración LoginServicio
+builder.Services.AddScoped<IUsuarioServicio, UsuarioServicio>(); // Configuración UsuarioServicio
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(); // Configurar autenticación
 
 var app = builder.Build();

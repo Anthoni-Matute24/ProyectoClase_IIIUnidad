@@ -20,9 +20,9 @@ namespace Blazor.Servicios
             // Del objeto "Config" se toma la CadenaConexion
             logInRepositorio = new LogInRepositorio(config.CadenaConexion);
         }
-        public async Task<bool> ValidarUsuario(LogIn login)
+        public async Task<bool> ValidarUsuario(LogIn logIn)
         {
-            return await logInRepositorio.ValidarUsuario(login);
+            return await logInRepositorio.ValidarUsuario(logIn);
         }
     }
 }

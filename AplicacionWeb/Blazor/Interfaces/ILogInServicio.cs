@@ -4,6 +4,6 @@ namespace Blazor.Interfaces
 {
     public interface ILogInServicio
     {
-        Task<bool> ValidarUsuario(LogIn login);
+        Task<bool> ValidarUsuario(LogIn logIn);
     }
 }
