@@ -58,7 +58,7 @@ namespace Datos.Repositorios
             catch (Exception ex)
             {
             }
-            return valido;
+            return user;
         }
 
         public Task<bool> NuevoUsuario(Usuario usuario)
