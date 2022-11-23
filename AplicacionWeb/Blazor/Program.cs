@@ -16,6 +16,7 @@ builder.Services.AddSingleton(cadenaConexion); // Permite reutilizar el servicio
 
 builder.Services.AddScoped<ILogInServicio, LogInServicio>(); // Configuración LoginServicio
 builder.Services.AddScoped<IUsuarioServicio, UsuarioServicio>(); // Configuración UsuarioServicio
+builder.Services.AddScoped<IProductoServicio, ProductoServicio>(); // Configuración ProductoServicio
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(); // Configurar autenticación
 
 builder.Services.AddSweetAlert2(); // Configurar Sweet Alert

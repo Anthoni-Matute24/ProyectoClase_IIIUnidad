@@ -1,5 +1,46 @@
-﻿<h3>Productos</h3>
+﻿@page "/Productos"
+@using Modelos;
 
-@code {
+<AuthorizeView Roles="Administrador">
+    <Authorized Context="Authentication">
 
-}
+        <h2>Lista de Productos</h2>
+        <br />
+
+        @if (ListaProductos == null)
+        {
+            <p>No existen productos en la base de datos.</p>
+        }
+        else
+        {
+            @*Muestra los productos de la base de datos*@
+            <table class="table"> 
+                <thead> @*Encabezado*@
+                    <tr>  @*Fila*@
+                        <th>Código</th>  @*Columna*@
+                        <th>Descripción</th>
+                        <th>Existencia</th>
+                        <th>Precio</th>
+                        <th>Fecha Creación</th>
+                        <th>Imagen</th>
+                    </tr>
+                </thead>
+
+                <tbody> @*Recorrer lista de productos*@
+                    @foreach (Producto products in ListaProductos)
+                    {
+                        <tr>
+                            <th>@products.Codigo</th>
+                            <th>@products.Descripcion</th>
+                            <th>@products.Existencia</th>
+                            <th>@products.Precio</th>
+                            <th>@products.FechaCreacion.ToShortDateString()</th>
+                            <th>@products.Imagen</th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+    </Authorized>
+</AuthorizeView>
