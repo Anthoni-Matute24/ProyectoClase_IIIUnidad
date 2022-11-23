@@ -1,0 +1,89 @@
+﻿@page "/Usuarios/Nuevo"
+
+<AuthorizeView Roles="Administrador">
+    <Authorized Context="AuthenticationState">
+
+        <h2>Nuevo Usuario</h2>
+        <br /> @*Salto de línea*@
+
+        @*EditForm: Permite pasar los binding del objeto "user" del código de C#*@
+        <EditForm Model="@user">
+            <DataAnnotationsValidator /> 
+
+            <div class="form-group row">
+                <label for="Codigo" class="col-sm-2 col-form-label">
+                    Código
+                </label>
+                <div class="col-sm-10">
+                    <InputText id="Codigo" class="form-control" @bind-Value="user.Codigo" />
+                    <ValidationMessage For="@(() => user.Codigo)" /> @*Muesta mensaje de los campos que requiere información obligatoria*@
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Nombre" class="col-sm-2 col-form-label">
+                    Nombre
+                </label>
+                <div class="col-sm-10">
+                    <InputText id="Nombre" class="form-control" @bind-Value="user.Nombre" />
+                    <ValidationMessage For="@(() => user.Nombre)" /> @*Muesta mensaje de los campos que requiere información obligatoria*@
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Clave" class="col-sm-2 col-form-label">
+                    Clave
+                </label>
+                <div class="col-sm-10">
+                    <InputText id="Clave" type="password" class="form-control" @bind-Value="user.Clave" />
+                    <ValidationMessage For="@(() => user.Clave)" /> @*Muesta mensaje de los campos que requiere información obligatoria*@
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Correo" class="col-sm-2 col-form-label">
+                    Correo
+                </label>
+                <div class="col-sm-10">
+                    <InputText id="Correo" class="form-control" @bind-Value="user.Correo" />
+                    <ValidationMessage For="@(() => user.Correo)" /> @*Muesta mensaje de los campos que requiere información obligatoria*@
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Rol" class="col-sm-2 col-form-label">
+                    Rol
+                </label>
+                <div class="col-sm-10">
+                    <InputSelect class="form-control" @bind-Value="user.Rol">
+                        @*Recorrer mediante foreach la lista enumerada de la clase "NewUsuario.razor.cs" y seleccionar un tipo de rol.*@
+                        @foreach (var rol in Enum.GetValues(typeof(Roles)))
+                        {
+                            <option value="@rol">@rol</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => user.Rol)" /> @*Muesta mensaje de los campos que requiere información obligatoria*@
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="EstaActivo" class="col-sm-2 col-form-label">
+                    Está Activo
+                </label>
+                <div class="col-sm-10">
+                    <InputCheckbox @bind-Value="user.EstaActivo" />
+                    <ValidationMessage For="@(() => user.EstaActivo)" /> @*Muesta mensaje de los campos que requiere información obligatoria*@
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <p>
+                    <input type="submit" class="btn btn-primary" value="Guardar" @onclick="Guardar"/> @*@onclick llama al método que ejecuta la acción del botón*@
+                    <input type="submit" class="btn btn-danger" value="Cancelar" @onclick="Cancelar" />
+                </p>
+            </div>
+
+        </EditForm>
+
+    </Authorized>
+</AuthorizeView>

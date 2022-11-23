@@ -5,6 +5,11 @@
     <Authorized Context="AuthenticationState">
 
         <h2>Lista de Usuarios</h2>
+         <div class="form-group row">
+              <div class="col-sm-10">
+                  <a href="/Usuarios/Nuevo" class="btn btn-primary">Nuevo Usuario</a>
+              </div>
+         </div>
 
         @if (lista == null)
         {
@@ -66,6 +71,5 @@
                 </tbody>
             </table>
         }
-
     </Authorized>
 </AuthorizeView>

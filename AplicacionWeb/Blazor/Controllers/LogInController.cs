@@ -25,7 +25,7 @@ namespace Blazor.Controllers
         }
 
         // Verbos HTTP
-        [HttpPost("/account/logIn")]
+        [HttpPost("/account/login")]
 
         // IActionResult: permite regresar el estatus de dicha petición, es decir, si fue exitosa o no fue exitosa 
         // Método para iniciar sesión
@@ -64,12 +64,12 @@ namespace Blazor.Controllers
                     }
                     else
                     {   // Si el usuario no está activo, lo direccionará nuevamente al LogIn y mostrará un mensaje de alerta
-                        return LocalRedirect("/logIn/El usuario no está activo");
+                        return LocalRedirect("/login/El usuario no esta activo");
                     }
                 }
                 else
                 {   // Si el usuario ingresa datos incorrectos, dará un mensaje de alerta
-                    return LocalRedirect("/logIn/Datos de usuario inválidos");
+                    return LocalRedirect("/login/Datos de usuario invalidos");
                 }
             }
             catch (Exception ex)
@@ -84,7 +84,7 @@ namespace Blazor.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return LocalRedirect("/logIn");
+            return LocalRedirect("/login");
         }
     }
 }
