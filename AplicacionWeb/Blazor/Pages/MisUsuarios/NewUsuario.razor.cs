@@ -29,11 +29,11 @@ namespace Blazor.Pages.MisUsuarios
 
             if (inserto) 
             {
-                await Swal.FireAsync("¡Bien hecho!", "¡Registro guardado exitosamente!", SweetAlertIcon.Success);
+                await Swal.FireAsync("¡Bien hecho!", "¡Usuario guardado exitosamente!", SweetAlertIcon.Success);
             }
             else
             {
-                await Swal.FireAsync("Hubo un eror", "No se guardó el registro", SweetAlertIcon.Error);
+                await Swal.FireAsync("Hubo un eror", "No se guardó el usuario", SweetAlertIcon.Error);
             }
 
             navigationManager.NavigateTo("/Usuarios"); // Redirige a la lista de usuarios 
