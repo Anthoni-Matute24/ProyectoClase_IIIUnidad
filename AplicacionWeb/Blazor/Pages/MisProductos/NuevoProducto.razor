@@ -1,5 +1,67 @@
-﻿<h3>NuevoProducto</h3>
+﻿@page "/Productos/Nuevo"
 
-@code {
+<AuthorizeView Roles="Administrador">
+	<Authorized Context="AuthenticationState">
 
-}
+		<h3>Nuevo Producto</h3>
+		<br />
+		<EditForm Model="@products">
+			<DataAnnotationsValidator />
+			<div class="form-group row">
+				<label for="Codigo" class="col-sm-2 col-form-label">
+					Código
+				</label>
+				<div class="col-sm-10">
+					<InputNumber id="Codigo" class="form-control" @bind-Value="products.Codigo" />
+					<ValidationMessage For="@(() => products.Codigo)" />
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="Descripcion" class="col-sm-2 col-form-label">
+					Descripción
+				</label>
+				<div class="col-sm-10">
+					<InputText id="Descripcion" class="form-control" @bind-Value="products.Descripcion" />
+					<ValidationMessage For="@(() => products.Descripcion)" />
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="Existencia" class="col-sm-2 col-form-label">
+					Existencia
+				</label>
+				<div class="col-sm-10">
+					<InputNumber id="Existencia" class="form-control" @bind-Value="products.Existencia" />
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="Precio" class="col-sm-2 col-form-label">
+					Precio
+				</label>
+				<div class="col-sm-10">
+					<InputNumber id="Precio" class="form-control" @bind-Value="products.Precio" />
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="Imagen" class="col-sm-2 col-form-label">
+					Imagen
+				</label>
+				<div class="col-sm-10">
+					<InputFile OnChange="@SeleccionarImagen"></InputFile>
+					<img style="width:300px; height:300px" src="@imgUrl">
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<p>
+					<input type="submit" class="btn btn-primary" value="Guardar" @onclick="Guardar" />
+					<input type="submit" class="btn btn-warning" value="Cancelar" @onclick="Cancelar" />
+				</p>
+			</div>
+
+		</EditForm>
+	</Authorized>
+</AuthorizeView>
