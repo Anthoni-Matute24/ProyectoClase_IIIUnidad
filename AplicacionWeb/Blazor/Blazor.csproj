@@ -7,12 +7,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\Facturacion\Factura.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CurrieTechnologies.Razor.SweetAlert2" Version="5.3.0" />
+    <PackageReference Include="Radzen.Blazor" Version="4.3.8" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj" />
     <ProjectReference Include="..\Modelos\Modelos.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Facturacion\Factura.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Facturacion\Factura.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\Facturacion\Factura.razor" />
   </ItemGroup>
 
 </Project>

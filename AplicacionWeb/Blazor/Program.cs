@@ -3,6 +3,7 @@ using Blazor.Interfaces;
 using Blazor.Servicios;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,8 @@ builder.Services.AddSingleton(cadenaConexion); // Permite reutilizar el servicio
 builder.Services.AddScoped<ILogInServicio, LogInServicio>(); // Configuración LoginServicio
 builder.Services.AddScoped<IUsuarioServicio, UsuarioServicio>(); // Configuración UsuarioServicio
 builder.Services.AddScoped<IProductoServicio, ProductoServicio>(); // Configuración ProductoServicio
+builder.Services.AddScoped<IFacturaServicio, FacturaServicio>(); // Configuración FacturaServicio
+builder.Services.AddScoped<IDetalleFacturaServicio, DetalleFacturaServicio>(); // Configuración DetalleFacturaServicio
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(); // Configurar autenticación
 
 builder.Services.AddSweetAlert2(); // Configurar Sweet Alert
