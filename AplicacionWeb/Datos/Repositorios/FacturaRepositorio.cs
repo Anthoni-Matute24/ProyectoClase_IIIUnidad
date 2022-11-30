@@ -25,21 +25,19 @@ namespace Datos.Repositorios
 
 		public async Task<int> NuevaFactura(Factura factura)
 		{
-			int idFactura = 0;
-			try
-			{
-				// Abrir una nueva conexión 
-				using MySqlConnection conexion = EstablecerConexion();
-				await conexion.OpenAsync();
-				string sql = @"INSERT INTO factura (IdentidadCliente, Fecha, CodigoUsuario, ISV, Descuento, Subtotal, Total) 
-                                VALUES (@IdentidadCliente, @Fecha, @CodigoUsuario, @ISV, @Descuento, @Subtotal, @Total); SELECT LAST_INSERT_ID()";
-				// Guardar los datos en caso de que se haya hecho un nuevo registro.
-				idFactura = Convert.ToInt32(await conexion.ExecuteScalarAsync(sql, factura));
-			}
-			catch (Exception ex)
-			{
-			}
-			return idFactura;
-		}
+            int idFactura = 0;
+            try
+            {
+                using MySqlConnection conexion = EstablecerConexion();
+                await conexion.OpenAsync();
+                string sql = @"INSERT INTO factura (IdentidadCliente, Fecha, CodigoUsuario, ISV, Descuento, Subtotal, Total) 
+                               VALUES (@IdentidadCliente, @Fecha, @CodigoUsuario, @ISV, @Descuento, @Subtotal, @Total); SELECT LAST_INSERT_ID()";
+                idFactura = Convert.ToInt32(await conexion.ExecuteScalarAsync(sql, factura));
+            }
+            catch (Exception ex)
+            {
+            }
+            return idFactura;
+        }
 	}
 }

@@ -21,7 +21,7 @@ builder.Services.AddScoped<IProductoServicio, ProductoServicio>(); // Configurac
 builder.Services.AddScoped<IFacturaServicio, FacturaServicio>(); // Configuración FacturaServicio
 builder.Services.AddScoped<IDetalleFacturaServicio, DetalleFacturaServicio>(); // Configuración DetalleFacturaServicio
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(); // Configurar autenticación
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddSweetAlert2(); // Configurar Sweet Alert
 
 var app = builder.Build();
